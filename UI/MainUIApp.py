@@ -182,12 +182,12 @@ class MainGUIApp():
         self.by_ratio_checkbox.grid(row=2, column=0, stick="w")
 
         # Show differences red rectangles
-        self.show_differences_red_rectangles = tk.StringVar()
+        self.show_differences = tk.StringVar()
 
         self.show_differences_red_rectangles_checkbox = tk.Checkbutton(
             frame_optional,
             text="Show differences red rectangles",
-            variable=self.show_differences_red_rectangles,
+            variable=self.show_differences,
             onvalue=ARGV["show differences red rectangles"][0],
             offvalue="default"
         )
@@ -579,6 +579,10 @@ class MainGUIApp():
         by_ratio = self.by_ratio.get()
         if by_ratio != "default":
             _argv.append(by_ratio)
+
+        show_differences = self.show_differences.get()
+        if show_differences != "default":
+            _argv.append(show_differences)
 
         window_name = "Wrong input"
         if self.pop_up_invalid_entry_path(window_name, source, target, output, mode, width):

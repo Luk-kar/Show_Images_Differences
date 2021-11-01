@@ -16,7 +16,7 @@ from Show_Images_Differences.check_argv_correctness.helpers.check_paths import c
 from Show_Images_Differences.check_argv_correctness.helpers.check_width_values import check_width_values
 
 
-def check_argv_correctness(argv_):
+def check_argv_correctness(argv_):  # todo
     """check if all argvs have correct paths, modes and width values"""
 
     program_name = argv_[0]

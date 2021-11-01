@@ -44,14 +44,16 @@ from Show_Images_Differences.create_similar_images_list.create_similar_images_li
 from Show_Images_Differences.help import help_detailed_usage, user_commanded_line_help
 from Show_Images_Differences.modes.save import save
 from Show_Images_Differences.modes.show import show
-from Show_Images_Differences.utils import check_ratio_argv
+from Show_Images_Differences.utils import check_ratio_argv, check_show_differences_argv
 from UI.window_displaying_not_found_images import window_displaying_not_found_images
 
 
 def Show_Images_Differences(_argv):
     """Parsing sys.argv to invoke in chosen modes: save or show, or to get help"""
 
-    check_argv_correctness(_argv)
+    check_argv_correctness(_argv)  # todo
+
+    return
     if user_commanded_line_help(_argv):
         return help_detailed_usage()
 
@@ -71,6 +73,8 @@ def Show_Images_Differences(_argv):
     script_run_date = _get_script_run_date()
 
     by_ratio = check_ratio_argv(_argv)
+
+    show_differences = check_show_differences_argv(_argv)
 
     similar_list = create_similar_images_list(
         source_ref_path,
