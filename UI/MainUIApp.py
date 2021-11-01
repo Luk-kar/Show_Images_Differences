@@ -34,7 +34,7 @@ class MainGUIApp():
 
         master.title("Show Images Differences")
         window_width = 618
-        window_height = 576
+        window_height = 600
         master.geometry(f"{window_width}x{window_height}")
         master.iconbitmap(
             f"{set_app_path()}UI/images/app.ico")
@@ -181,11 +181,25 @@ class MainGUIApp():
         self.by_ratio_checkbox.deselect()
         self.by_ratio_checkbox.grid(row=2, column=0, stick="w")
 
+        # Show differences red rectangles
+        self.show_differences_red_rectangles = tk.StringVar()
+
+        self.show_differences_red_rectangles_checkbox = tk.Checkbutton(
+            frame_optional,
+            text="Show differences red rectangles",
+            variable=self.show_differences_red_rectangles,
+            onvalue=ARGV["show differences red rectangles"][0],
+            offvalue="default"
+        )
+        self.show_differences_red_rectangles_checkbox.select()
+        self.show_differences_red_rectangles_checkbox.grid(
+            row=3, column=0, stick="w")
+
         # Match images
         self.match_btn = tk.Button(
             master, text="Match images", bg="#f5f5f5", command=self.match_images_btn)
         self.match_btn.config(height=3)
-        self.match_btn.grid(row=3, column=0, pady=(20, 0),
+        self.match_btn.grid(row=4, column=0, pady=(20, 0),
                             stick="we", padx=(10, 10))
 
         # populate dialogs with default values
