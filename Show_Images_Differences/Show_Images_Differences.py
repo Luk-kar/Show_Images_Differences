@@ -61,19 +61,66 @@ def Show_Images_Differences(_argv):
     target_ref_path = _argv[2]
     mode = _argv[3]
 
-    if len(_argv) > 4:
-        output_path = _argv[4]
-    else:
+    by_ratio = None
+    show_differences = None
+    width = IMAGES_SIZES["default width"]
+
+    if mode in ARGV["show"]:
         output_path = None
+
+        if len(_argv) > 4:
+
+            if _argv[4] in ARGV["search by ratio"]:
+                by_ratio = _argv[4]
+            elif len(_argv) > 5 and _argv[5] in ARGV["search by ratio"]:
+                by_ratio = _argv[5]
+            elif len(_argv) > 6 and _argv[6] in ARGV["search by ratio"]:
+                by_ratio = _argv[5]
+
+            if _argv[4] in ARGV["show differences red rectangles"]:
+                show_differences = _argv[4]
+            elif len(_argv) > 5 and _argv[5] in ARGV["show differences red rectangles"]:
+                show_differences = _argv[5]
+            elif len(_argv) > 6 and _argv[6] in ARGV["show differences red rectangles"]:
+                show_differences = _argv[6]
+
+            if _argv[4].isnumeric():
+                width = int(_argv[4])
+            elif len(_argv) > 5 and _argv[5].isnumeric():
+                width = int(_argv[5])
+            elif len(_argv) > 6 and _argv[6].isnumeric():
+                width = int(_argv[6])
+
+    elif mode in ARGV["save"]:
+        output_path = _argv[4]
+
+        if len(_argv) > 5:
+
+            if _argv[5] in ARGV["search by ratio"]:
+                by_ratio = _argv[5]
+            elif len(_argv) > 6 and _argv[6] in ARGV["search by ratio"]:
+                by_ratio = _argv[6]
+            elif len(_argv) > 7 and _argv[7] in ARGV["search by ratio"]:
+                by_ratio = _argv[6]
+
+            if _argv[5] in ARGV["show differences red rectangles"]:
+                show_differences = _argv[5]
+            elif len(_argv) > 6 and _argv[6] in ARGV["show differences red rectangles"]:
+                show_differences = _argv[6]
+            elif len(_argv) > 7 and _argv[7] in ARGV["show differences red rectangles"]:
+                show_differences = _argv[7]
+
+            if _argv[5].isnumeric():
+                width = int(_argv[5])
+            elif len(_argv) > 6 and _argv[6].isnumeric() and len(_argv) > 6:
+                width = int(_argv[6])
+            elif len(_argv) > 7 and _argv[7].isnumeric() and len(_argv) > 7:
+                width = int(_argv[7])
 
     messages_summary = []
 
     # to use in log errors
     script_run_date = _get_script_run_date()
-
-    by_ratio = check_ratio_argv(_argv)
-
-    show_differences = check_show_differences_argv(_argv)
 
     similar_list = create_similar_images_list(
         source_ref_path,
@@ -86,8 +133,6 @@ def Show_Images_Differences(_argv):
     references_counter = count_found_and_not_found_refs(
         source_ref_path, similar_list)
     messages_summary.append(references_counter)
-
-    width = IMAGES_SIZES["default width"]  # Default value for mobiles apps
 
     if mode in ARGV["save"]:
 
