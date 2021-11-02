@@ -168,7 +168,6 @@ test_paths = {
     "output dir": images_path + "\\output",
     "source file": "screen002.png",
     "target file": "screen002.png",
-    # todo http on github
     "http source": "https://raw.githubusercontent.com/Luk-kar/Show_Images_Differences/master/data/images/http/screen003.png",
     "http target": "https://raw.githubusercontent.com/Luk-kar/Show_Images_Differences/master/data/images/http/screen003_other.png",
     "source file http": "screen003.png",
