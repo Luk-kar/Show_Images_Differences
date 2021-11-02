@@ -77,27 +77,27 @@ def check_mode_show(argv_):
     def is_4th_legal_argv(argv_):
         return is_legal_width(argv_, 4) or argv_[4] in ARGV["search by ratio"]
 
-    if len(argv_) == 5 and not is_4th_legal_argv(argv_):
+    if len(argv_) == 6 and not is_4th_legal_argv(argv_):
         sys.exit(f'{ERRORS_MESSAGES["4th last arg"]}\n'
-                 f" {argv_[4]}\n"
+                 f" {argv_[5]}\n"
                  f"{help_tip()}")
 
-    elif len(argv_) == 6:
+    elif len(argv_) == 7:
 
-        if not is_legal_width(argv_, 4):
+        if not is_legal_width(argv_, 5):
 
             sys.exit(f'{ERRORS_MESSAGES["4th numeric"]}\n'
-                     f" {argv_[4]}\n"
+                     f" {argv_[5]}\n"
                      f"{help_tip()}")
 
         if not is_5th_by_ratio(argv_):
             sys.exit(f'{ERRORS_MESSAGES["5th last arg -br"]}\n'
-                     f" {argv_[5]}\n"
+                     f" {argv_[6]}\n"
                      f"{help_tip()}")
 
     elif len(argv_) == 7:
         sys.exit(f"{ERRORS_MESSAGES['one arg too much']}\n"
-                 f" {argv_[6]}\n"
+                 f" {argv_[7]}\n"
                  f"{help_tip()}")
 
 

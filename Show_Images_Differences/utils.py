@@ -23,7 +23,7 @@ def check_ratio_argv(_argv):
     """Return bool, check optional argument if images are searched by same ratio"""
 
     # [-1] To avoid checking 3 places at one, this argument is always last
-    return bool(_argv[-2] in ARGV["search by ratio"])
+    return bool(_argv[-2] in ARGV["search by ratio"] and _argv[-1] in ARGV["search by ratio"])
 
 
 def check_show_differences_argv(_argv):

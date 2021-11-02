@@ -13,7 +13,7 @@ from Show_Images_Differences.utils import give_resized_image, SizesSimilarityIma
 
 
 # https://www.pyimagesearch.com/2017/06/19/image-difference-with-opencv-and-python/
-def compute_image_differences(similar_pair, by_ratio=False):
+def compute_image_differences(similar_pair, by_ratio=False, show_differences=False):
     """calculate differences between images and show them in returned object"""
 
     paths = {
@@ -50,8 +50,9 @@ def compute_image_differences(similar_pair, by_ratio=False):
     thresh = cv2.threshold(diff, 0, 255,
                            cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
 
-    image_A, image_B = draw_countours_where_images_differ(
-        thresh, image_A, image_B)
+    if show_differences:
+        image_A, image_B = draw_countours_where_images_differ(
+            thresh, image_A, image_B)
 
     # Images data to latter process
     computed_images = {

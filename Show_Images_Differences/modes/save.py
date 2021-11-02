@@ -23,7 +23,7 @@ from Show_Images_Differences.modes.utils import (
 )
 
 
-def save(width, similar_list, by_ratio, _argv, script_run_date):
+def save(width, similar_list, by_ratio, show_differences, _argv, script_run_date):
     """save matched images in chosen directory"""
 
     if len(_argv) >= 5:
@@ -32,7 +32,7 @@ def save(width, similar_list, by_ratio, _argv, script_run_date):
         output_path = None
 
     # Optional args
-    if len(_argv) >= 6:
+    if len(_argv) >= 16:  # todo
         check_correctness_optional_argvs(_argv, 7)
         if check_width_argv_exists(_argv, 7):
             width = retrieve_argv_width(_argv, 7)
@@ -48,7 +48,8 @@ def save(width, similar_list, by_ratio, _argv, script_run_date):
 
         if not similar_pair is None:
 
-            images = compute_image_differences(similar_pair, by_ratio)
+            images = compute_image_differences(
+                similar_pair, by_ratio, show_differences)
 
             saved = save_images_as_one(
                 images,

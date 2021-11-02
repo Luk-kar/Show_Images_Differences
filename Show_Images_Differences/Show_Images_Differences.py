@@ -51,9 +51,8 @@ from UI.window_displaying_not_found_images import window_displaying_not_found_im
 def Show_Images_Differences(_argv):
     """Parsing sys.argv to invoke in chosen modes: save or show, or to get help"""
 
-    check_argv_correctness(_argv)  # todo
+    # check_argv_correctness(_argv)  # todo
 
-    return
     if user_commanded_line_help(_argv):
         return help_detailed_usage()
 
@@ -93,12 +92,12 @@ def Show_Images_Differences(_argv):
     if mode in ARGV["save"]:
 
         saving_counter = save(width, similar_list,
-                              by_ratio, _argv, script_run_date)
+                              by_ratio, show_differences,  _argv, script_run_date)
         messages_summary.append(saving_counter)
 
     elif mode in ARGV["show"]:
 
-        show(width, similar_list, by_ratio, _argv)
+        show(width, similar_list, by_ratio, show_differences, _argv)
 
         # bug fixing with persisting windows
         destroyAllWindows()
