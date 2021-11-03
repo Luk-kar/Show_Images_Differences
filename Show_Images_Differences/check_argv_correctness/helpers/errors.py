@@ -6,7 +6,7 @@ from Show_Images_Differences.config.config import ARGV, IMAGES_SIZES
 ERRORS_MESSAGES = {
     "no file": "Error: File does not exists:",
     "no output": "Error: No output path",
-    "invalid arg": "This argument is invalid:\n",
+    "invalid arg": "This argument is invalid:",
     "4th last arg": f"Error: 4th, last argument should be positive integer or be {ARGV['search by ratio'][0]} or {ARGV['search by ratio'][1]}:",
     "5th last arg": f'Error: 5th, last argument should be positive integer or be {ARGV["search by ratio"][0]} or {ARGV["search by ratio"][1]}:',
     "6th last arg": f'Error: 6th, last argument should be {ARGV["search by ratio"][0]} or {ARGV["search by ratio"][1]}',

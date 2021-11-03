@@ -21,15 +21,15 @@ def check_argv_correctness(argv_):  # todo
 
     program_name = argv_[0]
 
-    if len(argv_) == 2:
-        if check_correctness_help_command(argv_):
-            sys.exit(f"Error: invalid 1st argument. Usage: python {program_name} {ARGV['help'][0]} or {ARGV['help'][1]}:\n"
-                     f" {argv_[1]}")
+    # correct number of arguments
+    if check_correctness_number_of_args_mode(argv_):
 
-    elif len(argv_) > 2:
+        if len(argv_) == 2:
+            if check_correctness_help_command(argv_):
+                sys.exit(f"Error: invalid 1st argument. Usage: python {program_name} {ARGV['help'][0]} or {ARGV['help'][1]}:\n"
+                         f" {argv_[1]}")
 
-        # correct number of arguments
-        if check_correctness_number_of_args_mode(argv_):
+        elif len(argv_) > 2:
 
             check_paths(argv_)
 
@@ -38,7 +38,12 @@ def check_argv_correctness(argv_):  # todo
             check_optional_args(argv_)
 
     else:
-        raise ValueError("Invalid usage of program")
+        get_error_invalid_argument()
+
+
+def get_error_invalid_argument():
+    raise ValueError(f"{help_command_line()}\n"
+                     f"{help_tip()}")
 
 
 def check_correctness_number_of_args_all_cases(argv_):
@@ -53,7 +58,7 @@ def check_correctness_help_command(argv_):
 
 def check_correctness_number_of_args_mode(argv_):
     """return bool"""
-    return len(argv_) >= 4 and len(argv_) <= 9
+    return len(argv_) >= 4 and len(argv_) <= 7
 
 
 def check_command_help_len(argv_):
