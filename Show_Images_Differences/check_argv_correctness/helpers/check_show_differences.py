@@ -49,12 +49,9 @@ def check_show_differences(argv_):
                 sys.exit("There is no width value")
 
 
-"""Return bool, check optional argument if on images there will be red rectangles on images"""
-ARGV["show differences red rectangles"]
-
-
 def check_is_check_show_differences(argument):
-    return argument in ARGV["show differences red rectangles"]
+    """Return bool, check optional argument if on images there will be red rectangles on images"""
+    return argument in ARGV["show differences"]
 
 #    if not check_show_differences_argv(argv_):
 #        sys.exit(f'{ERRORS_MESSAGES["invalid show differences"]}\n'

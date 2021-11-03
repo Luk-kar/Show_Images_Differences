@@ -24,7 +24,7 @@ ERRORS_MESSAGES = {
     "not mode": f'Error: 3th argument is invalid. It\'s not mode: {ARGV["show"][0]} or {ARGV["save"][0]}:',
     "output same as source": 'Output directory can\'t be the same as "source references":',
     "output same as target": 'Output directory can\'t be the same as "target references":',
-    "invalid show differences": f"Error: it should be {ARGV['show differences red rectangles'][0]} or {ARGV['show differences red rectangles'][1]}"
+    "invalid show differences": f"Error: it should be {ARGV['show differences'][0]} or {ARGV['show differences'][1]}"
 }
 
 

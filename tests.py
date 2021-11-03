@@ -216,6 +216,7 @@ class TestReferenceJudge(unittest.TestCase):
             IMAGES_SIZES["biggest dimension"] + 1)  # It's arg
 
         self.by_ratio = test_paths["by ratio"]
+        self.show_differences = ARGV['show differences'][0]
 
         self.refresh_folder = True
 
@@ -275,6 +276,13 @@ class TestReferenceJudge(unittest.TestCase):
 
         _argv = [program_name, self.source_single,
                  self.target_single, self.save, self.output_dir]
+
+        test_save_mode(self, _argv, 1)
+
+    def test_single_by_single_to_folder_save_show_differences(self):
+
+        _argv = [program_name, self.source_single,
+                 self.target_single, self.save, self.output_dir, self.show_differences]
 
         test_save_mode(self, _argv, 1)
 
@@ -390,6 +398,13 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_show_mode(self, _argv, 3)
 
+    def test_folder_by_folder_show_differences(self):
+
+        _argv = [program_name, self.source_dir,
+                 self.target_dir, self.show, self.width, self.by_ratio, self.show_differences]
+
+        test_show_mode(self, _argv, 3)
+
     def test_FAIL_file_does_not_exists(self):
 
         _argv = [program_name, self.source_dir,
@@ -419,7 +434,7 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_4th_last_argument_should_numeric_or_by_ratio(self):
+    def test_FAIL_4th_argument_random(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.show, self.random]
@@ -430,7 +445,7 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_5th_last_argument_should_numeric_or_by_ratio(self):
+    def test_FAIL_5th_argument_random(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.save, self.output_dir, self.random]
@@ -441,7 +456,7 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_6th_last_argument_should_numeric_or_by_ratio(self):
+    def test_FAIL_6th_argument_random(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.save, self.output_dir, self.width, self.random]
@@ -552,7 +567,7 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_5th_numeric(self):
+    def test_FAIL_5th_random_6th_ratio(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.save, self.output_dir, self.random, self.by_ratio]
@@ -563,7 +578,7 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_4th_numeric(self):
+    def test_FAIL_4th_random_5th_numeric(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.show, self.random, self.by_ratio]
@@ -574,7 +589,7 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_5th_last_arg_br(self):
+    def test_FAIL_5th_width_6th_random(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.show, self.width, self.random]

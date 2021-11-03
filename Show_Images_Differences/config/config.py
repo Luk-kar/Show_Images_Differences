@@ -11,7 +11,7 @@ import sys
 LEGAL_EXTENSIONS = tuple(".png")
 
 ARGV = {
-    "show differences red rectangles": ["--show differences red rectangles", "-sd"],
+    "show differences": ["--show differences red rectangles", "-sd"],
     "search by ratio": ["--search_by_ratio", "-br"],
     "save": ["--save", "-sv"],
     "show": ["--show", "-sh"],

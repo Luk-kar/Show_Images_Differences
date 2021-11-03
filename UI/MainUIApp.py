@@ -188,7 +188,7 @@ class MainGUIApp():
             frame_optional,
             text="Show differences red rectangles",
             variable=self.show_differences,
-            onvalue=ARGV["show differences red rectangles"][0],
+            onvalue=ARGV["show differences"][0],
             offvalue="default"
         )
         self.show_differences_red_rectangles_checkbox.select()

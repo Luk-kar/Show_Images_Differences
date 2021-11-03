@@ -76,11 +76,11 @@ def Show_Images_Differences(_argv):
             elif len(_argv) > 6 and _argv[6] in ARGV["search by ratio"]:
                 by_ratio = _argv[5]
 
-            if _argv[4] in ARGV["show differences red rectangles"]:
+            if _argv[4] in ARGV["show differences"]:
                 show_differences = _argv[4]
-            elif len(_argv) > 5 and _argv[5] in ARGV["show differences red rectangles"]:
+            elif len(_argv) > 5 and _argv[5] in ARGV["show differences"]:
                 show_differences = _argv[5]
-            elif len(_argv) > 6 and _argv[6] in ARGV["show differences red rectangles"]:
+            elif len(_argv) > 6 and _argv[6] in ARGV["show differences"]:
                 show_differences = _argv[6]
 
             if _argv[4].isnumeric():
@@ -102,11 +102,11 @@ def Show_Images_Differences(_argv):
             elif len(_argv) > 7 and _argv[7] in ARGV["search by ratio"]:
                 by_ratio = _argv[6]
 
-            if _argv[5] in ARGV["show differences red rectangles"]:
+            if _argv[5] in ARGV["show differences"]:
                 show_differences = _argv[5]
-            elif len(_argv) > 6 and _argv[6] in ARGV["show differences red rectangles"]:
+            elif len(_argv) > 6 and _argv[6] in ARGV["show differences"]:
                 show_differences = _argv[6]
-            elif len(_argv) > 7 and _argv[7] in ARGV["show differences red rectangles"]:
+            elif len(_argv) > 7 and _argv[7] in ARGV["show differences"]:
                 show_differences = _argv[7]
 
             if _argv[5].isnumeric():

@@ -47,7 +47,7 @@ def check_optional_args(argv_):
 
 
 def check_is_optional_argument(argument):
-    return argument in ARGV["show differences red rectangles"] or argument in ARGV["search by ratio"] or (argument.isnumeric() and check_legal_value(argument))
+    return argument in ARGV["show differences"] or argument in ARGV["search by ratio"] or (argument.isnumeric() and check_legal_value(argument))
 
 
 def check_legal_value(_width):
