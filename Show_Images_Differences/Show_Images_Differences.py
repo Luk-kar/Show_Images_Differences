@@ -44,7 +44,6 @@ from Show_Images_Differences.create_similar_images_list.create_similar_images_li
 from Show_Images_Differences.help import help_detailed_usage, user_commanded_line_help
 from Show_Images_Differences.modes.save import save
 from Show_Images_Differences.modes.show import show
-from Show_Images_Differences.utils import check_ratio_argv, check_show_differences_argv
 from UI.window_displaying_not_found_images import window_displaying_not_found_images
 
 

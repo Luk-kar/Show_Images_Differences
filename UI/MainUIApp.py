@@ -325,7 +325,7 @@ class MainGUIApp():
         if show_message:
             messagebox.showinfo(
                 "Done!",
-                "You reset your setup to defaults"
+                "You have reset your setup to defaults"
             )
 
     def setup_default_reset(self, show_message=True):
@@ -349,7 +349,7 @@ class MainGUIApp():
         if show_message:
             messagebox.showinfo(
                 "Done!",
-                "You reset setup configuration to factory settings"
+                "You have reset setup configuration to factory settings"
             )
 
     def change_log_status(self):
