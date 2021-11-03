@@ -18,9 +18,6 @@ def check_optional_args(argv_):
 
     invalid_optional_arg = []
 
-    print(argv_)
-    print(len(argv_))
-
     if len(argv_) >= 5 and mode in ARGV["show"]:
 
         if not check_is_optional_argument(argv_[4]):
@@ -41,7 +38,11 @@ def check_optional_args(argv_):
 
     if invalid_optional_arg:
         for arg in invalid_optional_arg:
-            sys.exit(arg)
+            if arg.isnumeric():
+                width = arg
+                show_error_invalid_width(width)
+            else:
+                show_error_invalid_option(arg)
 
 
 def check_is_optional_argument(argument):
@@ -60,3 +61,19 @@ def check_legal_value(_width):
         return False
     else:
         return True
+
+
+def show_error_invalid_width(_width):
+    """check if width value is lower or equal IMAGES_SIZES["biggest dimension"] and inform client"""
+
+    width = int(_width)
+
+    # check if value is too high
+    if width > IMAGES_SIZES["biggest dimension"]:
+        sys.exit(get_error_width_too_high(width))
+    elif width < IMAGES_SIZES["smallest dimension"]:
+        sys.exit(get_error_width_too_low(width))
+
+
+def show_error_invalid_option(option):
+    sys.exit(f"This argument is invalid:\n{option}")
