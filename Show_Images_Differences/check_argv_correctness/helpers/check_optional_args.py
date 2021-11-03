@@ -5,7 +5,7 @@ import sys
 
 # internal libs
 from Show_Images_Differences.config.config import ARGV, IMAGES_SIZES
-from Show_Images_Differences.check_argv_correctness.helpers.errors import get_error_width_too_high, get_error_width_too_low
+from Show_Images_Differences.check_argv_correctness.helpers.errors import get_error_width_too_high, get_error_width_too_low, ERRORS_MESSAGES
 
 
 def check_optional_args(argv_):
@@ -76,4 +76,4 @@ def show_error_invalid_width(_width):
 
 
 def show_error_invalid_option(option):
-    sys.exit(f"This argument is invalid:\n{option}")
+    sys.exit(f"{ERRORS_MESSAGES['invalid arg']}{option}")
