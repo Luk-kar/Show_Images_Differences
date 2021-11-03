@@ -42,8 +42,8 @@ def check_argv_correctness(argv_):  # todo
 
 
 def get_error_invalid_argument():
-    raise ValueError(f"{help_command_line()}\n"
-                     f"{help_tip()}")
+    sys.exit(f"{help_command_line()}\n"
+             f"{help_tip()}")
 
 
 def check_correctness_number_of_args_all_cases(argv_):
