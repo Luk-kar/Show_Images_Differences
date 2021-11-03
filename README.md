@@ -11,20 +11,20 @@ Similar images are matched automatically, to get the best result try to match im
 
 Run `python Show_Images_Differences` command line in the directory where the folder exists
 
-To run only UI version you don't have to provide any arguments, just press "enter"
+To run only the UI version you don't have to provide any arguments, just press "enter"
 
 If you want to use the console: [**How to use console**](docs/How_to_use_console.md)
 
 standalone exe version of a program is here: [link](https://gofile.io/d/DlYQ0I)
 
-You can also create your own executable: [link](https://www.youtube.com/watch?v=UZX5kH72Yx4)
+You can also create your executable: [link](https://www.youtube.com/watch?v=UZX5kH72Yx4)
 
 ## Using UI version 👀
 
 ![main window](docs/images/main_window.png)
 
-1. Firstly, you choose the **source** folder/file/url to **process**
-2. Next, you choose the **target** folder/file/url to **compare** to
+1. Firstly, you choose the **source** folder/file/URL to **process**
+2. Next, you choose the **target** folder/file/URL to **compare** to
 3. Later, you check **mode** in which you want to display images:
 
 - **Save**
@@ -47,12 +47,14 @@ You can also create your own executable: [link](https://www.youtube.com/watch?v=
    any ratios of **target** images below or above these values are disregarded  
    Generally, it's not recommended to use this option due to image distortions
 
-8. The final step is to push the button **"Match images"**  
-   Depending on a number of images to process results should appear fairly fast  
+8. The checkbox **Show differences red rectangles** enables showing **marked area** by red rectangle where **differences occur**
+
+9. The final step is to push the button **"Match images"**  
+   Depending on the number of images to process results should appear fairly fast  
    Images are automatically **matched** on the degree of **similarity**  
    The **naming** of files does **not matter** in that case
 
-9. **Enjoy** the results!
+10. **Enjoy** the results!
 
 ## Errors ⚠️
 
@@ -64,9 +66,9 @@ You can also create your own executable: [link](https://www.youtube.com/watch?v=
    Each **.txt** file looks like: **ERROR-(date when the script ran).txt**:
 
 2. If you use **"Show mode"**:  
-   When **errors occur**, then pop-up window with listed **"not found"** files matches will appear
+   When **errors occur**, then a pop-up window with listed **"not found"** files matches will appear
 
-For both modes you will get pop-up notification about the quantity of **errors**
+For both modes, you will get a pop-up notification about the quantity of **errors**
 
 ### Type of **errors**:
 
@@ -80,7 +82,7 @@ For both modes you will get pop-up notification about the quantity of **errors**
 The areas marked **in red** are **options** which can be **saved**, **loaded** as setup files  
 Setups are stored in **"program/data/appData/"**
 
-To process setups, in menu **"Setup"** are located following options:
+To process setups, in menu **"Setup"** is located following options:
 
 1. **Save as**, save current setup into **.ini** file
 2. **Open**, open setup **.ini** file
@@ -93,8 +95,8 @@ To process setups, in menu **"Setup"** are located following options:
 ![logs menu](docs/images/logs.png)
 
 In this menu, you can choose if **errors logs** appear or not  
-In **Save mode** errors logs are saved in output directory  
-In **Show mode** errors logs are shown in pop-up box
+In **Save mode** errors logs are saved in the output directory  
+In **Show mode** errors logs are shown in the pop-up box
 
 ## Help ℹ️
 
@@ -102,8 +104,8 @@ In **Show mode** errors logs are shown in pop-up box
 
 It consists of:
 
-- How to use program
-- About (program and it's creator)
+- How to use the program
+- About (program and its creator)
 
 ## Program config 🕹️
 
