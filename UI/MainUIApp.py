@@ -181,7 +181,7 @@ class MainGUIApp():
         self.by_ratio_checkbox.deselect()
         self.by_ratio_checkbox.grid(row=2, column=0, stick="w")
 
-        # Show differences red rectangles
+        # Mark differences on images
         self.show_differences = tk.StringVar()
 
         self.show_differences_checkbox = tk.Checkbutton(
