@@ -14,3 +14,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - UI version of program
 - tests.py
 - documentation
+
+## [2.0.0-initial]
+
+### Added
+
+- added "Mark differences on images" checkbox
+- UI fixed wording

@@ -44,14 +44,14 @@ from Show_Images_Differences.create_similar_images_list.create_similar_images_li
 from Show_Images_Differences.help import help_detailed_usage, user_commanded_line_help
 from Show_Images_Differences.modes.save import save
 from Show_Images_Differences.modes.show import show
-from Show_Images_Differences.utils import check_ratio_argv
 from UI.window_displaying_not_found_images import window_displaying_not_found_images
 
 
 def Show_Images_Differences(_argv):
     """Parsing sys.argv to invoke in chosen modes: save or show, or to get help"""
 
-    check_argv_correctness(_argv)
+    check_argv_correctness(_argv)  # todo
+
     if user_commanded_line_help(_argv):
         return help_detailed_usage()
 
@@ -60,17 +60,66 @@ def Show_Images_Differences(_argv):
     target_ref_path = _argv[2]
     mode = _argv[3]
 
-    if len(_argv) > 4:
-        output_path = _argv[4]
-    else:
+    by_ratio = None
+    show_differences = None
+    width = IMAGES_SIZES["default width"]
+
+    if mode in ARGV["show"]:
         output_path = None
+
+        if len(_argv) > 4:
+
+            if _argv[4] in ARGV["search by ratio"]:
+                by_ratio = _argv[4]
+            elif len(_argv) > 5 and _argv[5] in ARGV["search by ratio"]:
+                by_ratio = _argv[5]
+            elif len(_argv) > 6 and _argv[6] in ARGV["search by ratio"]:
+                by_ratio = _argv[5]
+
+            if _argv[4] in ARGV["show differences"]:
+                show_differences = _argv[4]
+            elif len(_argv) > 5 and _argv[5] in ARGV["show differences"]:
+                show_differences = _argv[5]
+            elif len(_argv) > 6 and _argv[6] in ARGV["show differences"]:
+                show_differences = _argv[6]
+
+            if _argv[4].isnumeric():
+                width = int(_argv[4])
+            elif len(_argv) > 5 and _argv[5].isnumeric():
+                width = int(_argv[5])
+            elif len(_argv) > 6 and _argv[6].isnumeric():
+                width = int(_argv[6])
+
+    elif mode in ARGV["save"]:
+        output_path = _argv[4]
+
+        if len(_argv) > 5:
+
+            if _argv[5] in ARGV["search by ratio"]:
+                by_ratio = _argv[5]
+            elif len(_argv) > 6 and _argv[6] in ARGV["search by ratio"]:
+                by_ratio = _argv[6]
+            elif len(_argv) > 7 and _argv[7] in ARGV["search by ratio"]:
+                by_ratio = _argv[6]
+
+            if _argv[5] in ARGV["show differences"]:
+                show_differences = _argv[5]
+            elif len(_argv) > 6 and _argv[6] in ARGV["show differences"]:
+                show_differences = _argv[6]
+            elif len(_argv) > 7 and _argv[7] in ARGV["show differences"]:
+                show_differences = _argv[7]
+
+            if _argv[5].isnumeric():
+                width = int(_argv[5])
+            elif len(_argv) > 6 and _argv[6].isnumeric() and len(_argv) > 6:
+                width = int(_argv[6])
+            elif len(_argv) > 7 and _argv[7].isnumeric() and len(_argv) > 7:
+                width = int(_argv[7])
 
     messages_summary = []
 
     # to use in log errors
     script_run_date = _get_script_run_date()
-
-    by_ratio = check_ratio_argv(_argv)
 
     similar_list = create_similar_images_list(
         source_ref_path,
@@ -84,17 +133,15 @@ def Show_Images_Differences(_argv):
         source_ref_path, similar_list)
     messages_summary.append(references_counter)
 
-    width = IMAGES_SIZES["default width"]  # Default value for mobiles apps
-
     if mode in ARGV["save"]:
 
         saving_counter = save(width, similar_list,
-                              by_ratio, _argv, script_run_date)
+                              by_ratio, show_differences,  _argv, script_run_date)
         messages_summary.append(saving_counter)
 
     elif mode in ARGV["show"]:
 
-        show(width, similar_list, by_ratio, _argv)
+        show(width, similar_list, by_ratio, show_differences, _argv)
 
         # bug fixing with persisting windows
         destroyAllWindows()

@@ -13,33 +13,37 @@ from Show_Images_Differences.help import help_command_line, help_tip
 # same lib
 from Show_Images_Differences.check_argv_correctness.helpers.check_mode import check_mode
 from Show_Images_Differences.check_argv_correctness.helpers.check_paths import check_paths
-from Show_Images_Differences.check_argv_correctness.helpers.check_width_values import check_width_values
+from Show_Images_Differences.check_argv_correctness.helpers.check_optional_args import check_optional_args
 
 
-def check_argv_correctness(argv_):
+def check_argv_correctness(argv_):  # todo
     """check if all argvs have correct paths, modes and width values"""
 
     program_name = argv_[0]
 
-    if check_correctness_number_of_args_all_cases(argv_):
-        sys.exit(f"{help_command_line()}\n"
-                 f"{help_tip()}")
-
-    elif check_correctness_help_command(argv_):
-        sys.exit(f"Error: invalid 1st argument. Usage: python {program_name} {ARGV['help'][0]} or {ARGV['help'][1]}:\n"
-                 f" {argv_[1]}")
-
     # correct number of arguments
-    elif check_correctness_number_of_args_mode(argv_):
+    if check_correctness_number_of_args_mode(argv_):
 
-        check_paths(argv_)
+        if len(argv_) == 2:
+            if check_correctness_help_command(argv_):
+                sys.exit(f"Error: invalid 1st argument. Usage: python {program_name} {ARGV['help'][0]} or {ARGV['help'][1]}:\n"
+                         f" {argv_[1]}")
 
-        check_mode(argv_)
+        elif len(argv_) > 2:
 
-        check_width_values(argv_)
+            check_paths(argv_)
+
+            check_mode(argv_)
+
+            check_optional_args(argv_)
 
     else:
-        raise ValueError("Invalid usage of program")
+        get_error_invalid_argument()
+
+
+def get_error_invalid_argument():
+    sys.exit(f"{help_command_line()}\n"
+             f"{help_tip()}")
 
 
 def check_correctness_number_of_args_all_cases(argv_):

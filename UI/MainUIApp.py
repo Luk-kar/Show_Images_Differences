@@ -34,7 +34,7 @@ class MainGUIApp():
 
         master.title("Show Images Differences")
         window_width = 618
-        window_height = 576
+        window_height = 600
         master.geometry(f"{window_width}x{window_height}")
         master.iconbitmap(
             f"{set_app_path()}UI/images/app.ico")
@@ -181,11 +181,25 @@ class MainGUIApp():
         self.by_ratio_checkbox.deselect()
         self.by_ratio_checkbox.grid(row=2, column=0, stick="w")
 
+        # Mark differences on images
+        self.show_differences = tk.StringVar()
+
+        self.show_differences_checkbox = tk.Checkbutton(
+            frame_optional,
+            text="Mark differences on images",
+            variable=self.show_differences,
+            onvalue=ARGV["show differences"][0],
+            offvalue="default"
+        )
+        self.show_differences_checkbox.deselect()
+        self.show_differences_checkbox.grid(
+            row=3, column=0, stick="w")
+
         # Match images
         self.match_btn = tk.Button(
             master, text="Match images", bg="#f5f5f5", command=self.match_images_btn)
         self.match_btn.config(height=3)
-        self.match_btn.grid(row=3, column=0, pady=(20, 0),
+        self.match_btn.grid(row=4, column=0, pady=(20, 0),
                             stick="we", padx=(10, 10))
 
         # populate dialogs with default values
@@ -279,6 +293,9 @@ class MainGUIApp():
         by_ratio_state = config.get("OPTIONAL", "by the same ratio")
         self.by_ratio.set(by_ratio_state)
 
+        show_differences = config.get("OPTIONAL", "show differences")
+        self.show_differences.set(show_differences)
+
     def entry_set(self, entry, entry_content):
 
         entry = self.entry_set_text(entry, entry_content)
@@ -311,7 +328,7 @@ class MainGUIApp():
         if show_message:
             messagebox.showinfo(
                 "Done!",
-                "You reset your setup to defaults"
+                "You have reset your setup to defaults"
             )
 
     def setup_default_reset(self, show_message=True):
@@ -326,6 +343,7 @@ class MainGUIApp():
             "Enter your path...",
             IMAGES_SIZES["default width"],
             "default",
+            "default"
         )
 
         config = read_config_file(defaults_file)
@@ -335,7 +353,7 @@ class MainGUIApp():
         if show_message:
             messagebox.showinfo(
                 "Done!",
-                "You reset setup configuration to factory settings"
+                "You have reset setup configuration to factory settings"
             )
 
     def change_log_status(self):
@@ -369,6 +387,7 @@ class MainGUIApp():
             self.output_entry.get(),
             self.width_entry.get(),
             self.by_ratio.get(),
+            self.show_differences.get()
         )
 
         messagebox.showinfo(
@@ -394,6 +413,7 @@ class MainGUIApp():
                 self.output_entry.get(),
                 self.width_entry.get(),
                 self.by_ratio.get(),
+                self.show_differences.get()
             )
 
             messagebox.showinfo(
@@ -414,6 +434,8 @@ class MainGUIApp():
             "by ratio": 'Match images refs: "Source -> Target", ' +
             "with diffrent sizes but the same ratio.\n" +
             "Not recommended due to distortions.",
+            "show differences": "Show on the target image and source image differences by " +
+            "red rectangle surrounding differs area",
             "btn folder": "Choose folder...",
             "btn file": "Choose file...",
             "match btn": "Run the script!"
@@ -433,6 +455,8 @@ class MainGUIApp():
         CreateToolTip(self.show_radio, tooltips["show"])
 
         CreateToolTip(self.by_ratio_checkbox, tooltips["by ratio"])
+        CreateToolTip(self.show_differences_checkbox,
+                      tooltips["show differences"])
 
         CreateToolTip(self.source_btn_file, tooltips["btn file"])
         CreateToolTip(self.source_btn_folder, tooltips["btn folder"])
@@ -566,6 +590,10 @@ class MainGUIApp():
         if by_ratio != "default":
             _argv.append(by_ratio)
 
+        show_differences = self.show_differences.get()
+        if show_differences != "default":
+            _argv.append(show_differences)
+
         window_name = "Wrong input"
         if self.pop_up_invalid_entry_path(window_name, source, target, output, mode, width):
             return
@@ -656,6 +684,7 @@ def setup_saving(
     output_entry,
     width_entry,
     by_ratio,
+    show_differences
 ):
 
     config = ConfigParser()
@@ -672,7 +701,8 @@ def setup_saving(
 
     config["OPTIONAL"] = {
         "width entry": width_entry,
-        "by the same ratio": by_ratio
+        "by the same ratio": by_ratio,
+        "show differences": show_differences
     }
 
     if output_path:

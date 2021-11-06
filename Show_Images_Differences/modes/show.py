@@ -16,11 +16,11 @@ from Show_Images_Differences.modes.utils import (
 )
 
 
-def show(width, similar_list, by_ratio, _argv):
+def show(width, similar_list, by_ratio, show_differences, _argv):
     """show matched images"""
 
     # Optional args
-    if len(_argv) >= 5:
+    if len(_argv) >= 15:  # todo
         check_correctness_optional_argvs(_argv, 6)
         if check_width_argv_exists(_argv, 6):
             width = retrieve_argv_width(_argv, 6)
@@ -32,7 +32,8 @@ def show(width, similar_list, by_ratio, _argv):
 
         if not similar_pair is None:
 
-            images = compute_image_differences(similar_pair, by_ratio)
+            images = compute_image_differences(
+                similar_pair, by_ratio, show_differences)
 
             show_images(width, images)
 

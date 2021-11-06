@@ -22,11 +22,8 @@ def check_mode(argv_):
 
         check_mode_save(argv_)
 
-    elif mode in ARGV["show"]:
+    elif not mode in ARGV["show"]:
 
-        check_mode_show(argv_)
-
-    else:
         sys.exit(f'{ERRORS_MESSAGES["not mode"]}\n'
                  f" {argv_[3]}\n"
                  f"{help_tip()}")
@@ -41,63 +38,8 @@ def check_mode_save(argv_):
     def is_output_path(argv_):
         return len(argv_) < 5
 
-    def is_last_argv_by_ratio(argv_):
-        return argv_[6] in ARGV["search by ratio"]
-
-    def is_5th_legal_argv(argv_):
-        return is_legal_width(argv_, 5) or is_5th_by_ratio(argv_)
-
     if is_output_path(argv_):
         sys.exit(f"{ERRORS_MESSAGES['no output']}\n"
-                 f"{help_tip()}")
-
-    elif len(argv_) == 6 and not is_5th_legal_argv(argv_):
-
-        sys.exit(f'{ERRORS_MESSAGES["5th last arg"]}:\n'
-                 f" {argv_[5]}\n"
-                 f"{help_tip()}")
-
-    elif len(argv_) == 7:
-
-        if not is_legal_width(argv_, 5):
-            sys.exit(f'{ERRORS_MESSAGES["5th numeric"]}\n'
-                     f" {argv_[5]}\n"
-                     f"{help_tip()}")
-
-        if not is_last_argv_by_ratio(argv_):
-            sys.exit(f'{ERRORS_MESSAGES["6th last arg"]}:\n'
-                     f" {argv_[6]}\n"
-                     f"{help_tip()}")
-
-
-def check_mode_show(argv_):
-    """check correctness all argv in show mode"""
-
-    # USE ONLY HERE
-    def is_4th_legal_argv(argv_):
-        return is_legal_width(argv_, 4) or argv_[4] in ARGV["search by ratio"]
-
-    if len(argv_) == 5 and not is_4th_legal_argv(argv_):
-        sys.exit(f'{ERRORS_MESSAGES["4th last arg"]}\n'
-                 f" {argv_[4]}\n"
-                 f"{help_tip()}")
-
-    elif len(argv_) == 6:
-
-        if not is_legal_width(argv_, 4):
-
-            sys.exit(f'{ERRORS_MESSAGES["4th numeric"]}\n'
-                     f" {argv_[4]}\n"
-                     f"{help_tip()}")
-
-        if not is_5th_by_ratio(argv_):
-            sys.exit(f'{ERRORS_MESSAGES["5th last arg -br"]}\n'
-                     f" {argv_[5]}\n"
-                     f"{help_tip()}")
-
-    elif len(argv_) == 7:
-        sys.exit(f"{ERRORS_MESSAGES['one arg too much']}\n"
-                 f" {argv_[6]}\n"
                  f"{help_tip()}")
 
 

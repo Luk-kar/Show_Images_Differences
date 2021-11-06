@@ -23,10 +23,11 @@ def check_ratio_argv(_argv):
     """Return bool, check optional argument if images are searched by same ratio"""
 
     # [-1] To avoid checking 3 places at one, this argument is always last
-    return bool(_argv[-1] in ARGV["search by ratio"])
-
+    return bool(_argv[-2] in ARGV["search by ratio"] and _argv[-1] in ARGV["search by ratio"])
 
 # https://stackoverflow.com/a/58126805/12490791
+
+
 def resize_with_with_aspect_ratio(image, width=None, height=None, inter=cv2.INTER_AREA):
     """Resize input image by width or height keeping proportion to the image"""
 

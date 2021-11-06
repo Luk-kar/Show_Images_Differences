@@ -96,7 +96,7 @@ class About():
         label_font = 'Helvetica 9 bold'
 
         # Version
-        numb = "1.0.0"
+        numb = "2.0.0"
         version_label = tk.Label(padding, text="Version:", font=label_font)
         version_label.pack(anchor=justify, padx=width)
         version_numb = tk.Label(padding, text=f"{numb}")
@@ -173,7 +173,8 @@ class HowUse():
 To avoid too big distortions, accepted ratios between compared images are from {IMAGES_SIZES["lowest scale"]} to {IMAGES_SIZES["highest scale"]}.
 4. Choose output methods ("Save" or "Show"), with the provided path or not.
 5. Set any width's display images between 1 and {IMAGES_SIZES["biggest dimension"]} (px value).
-6. Finally, push the "Match images" button to render results.
+6. If you want to see marked areas of differences on images you can check "Mark differences on images".
+7. Finally, push the "Match images" button to render results.
         """
         how_to_use_label = tk.Label(
             padding, text="How to use:", font=label_font)

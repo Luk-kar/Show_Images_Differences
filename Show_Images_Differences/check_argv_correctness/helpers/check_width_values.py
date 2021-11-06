@@ -18,34 +18,47 @@ def check_width_values(argv_):
 
     if len(argv_) >= 5:
         if mode in ARGV["show"]:
-            check_legal_value(argv_, 6)
+
+            isWidth = False
+
+            if argv_[5].isnumeric():
+                isWidth = True
+                check_legal_value(argv_[5])
+            elif argv_[6].isnumeric():
+                isWidth = True
+                check_legal_value(argv_[6])
+            elif argv_[7].isnumeric():
+                isWidth = True
+                check_legal_value(argv_[7])
+
+            if not isWidth:
+                sys.exit("There is no width value")
 
         elif mode in ARGV["save"]:
-            check_legal_value(argv_, 7)
+
+            isWidth = False
+
+            if argv_[6].isnumeric():
+                isWidth = True
+                check_legal_value(argv_[6])
+            elif argv_[7].isnumeric():
+                isWidth = True
+                check_legal_value(argv_[7])
+            elif argv_[8].isnumeric():
+                isWidth = True
+                check_legal_value(argv_[8])
+
+            if not isWidth:
+                sys.exit("There is no width value")
 
 
-def check_legal_value(argv_, cap_len_argv):
+def check_legal_value(_width):
     """check if width value is lower or equal IMAGES_SIZES["biggest dimension"]"""
 
-    n = cap_len_argv
+    width = int(_width)
 
-    if check_argv_len_with_width(argv_, n) and check_if_width_is_legal(argv_, n):
-
-        # Input user is width of reference image size
-        width = int(argv_[n - 2])
-
-        # check if value is too high
-        if width > IMAGES_SIZES["biggest dimension"]:
-            sys.exit(get_error_width_too_high(width))
-        elif width < IMAGES_SIZES["smallest dimension"]:
-            sys.exit(get_error_width_too_low(width))
-
-
-def check_argv_len_with_width(argv_, n):
-    """return bool"""
-    return len(argv_) >= (n - 1)
-
-
-def check_if_width_is_legal(argv_, n):
-    """return bool"""
-    return argv_[n - 2].isnumeric()
+    # check if value is too high
+    if width > IMAGES_SIZES["biggest dimension"]:
+        sys.exit(get_error_width_too_high(width))
+    elif width < IMAGES_SIZES["smallest dimension"]:
+        sys.exit(get_error_width_too_low(width))

@@ -18,7 +18,8 @@ from Show_Images_Differences.check_argv_correctness.helpers.errors import (
     get_error_directory_does_not_exists,
     get_error_no_images_in_dir,
     get_error_width_too_high,
-    get_error_width_too_low
+    get_error_width_too_low,
+
 )
 
 # https://stackoverflow.com/a/54955094/12490791
@@ -168,7 +169,6 @@ test_paths = {
     "output dir": images_path + "\\output",
     "source file": "screen002.png",
     "target file": "screen002.png",
-    # todo http on github
     "http source": "https://raw.githubusercontent.com/Luk-kar/Show_Images_Differences/master/data/images/http/screen003.png",
     "http target": "https://raw.githubusercontent.com/Luk-kar/Show_Images_Differences/master/data/images/http/screen003_other.png",
     "source file http": "screen003.png",
@@ -216,6 +216,7 @@ class TestReferenceJudge(unittest.TestCase):
             IMAGES_SIZES["biggest dimension"] + 1)  # It's arg
 
         self.by_ratio = test_paths["by ratio"]
+        self.show_differences = ARGV['show differences'][0]
 
         self.refresh_folder = True
 
@@ -275,6 +276,13 @@ class TestReferenceJudge(unittest.TestCase):
 
         _argv = [program_name, self.source_single,
                  self.target_single, self.save, self.output_dir]
+
+        test_save_mode(self, _argv, 1)
+
+    def test_single_by_single_to_folder_save_show_differences(self):
+
+        _argv = [program_name, self.source_single,
+                 self.target_single, self.save, self.output_dir, self.show_differences]
 
         test_save_mode(self, _argv, 1)
 
@@ -390,6 +398,13 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_show_mode(self, _argv, 3)
 
+    def test_folder_by_folder_show_differences(self):
+
+        _argv = [program_name, self.source_dir,
+                 self.target_dir, self.show, self.width, self.by_ratio, self.show_differences]
+
+        test_show_mode(self, _argv, 3)
+
     def test_FAIL_file_does_not_exists(self):
 
         _argv = [program_name, self.source_dir,
@@ -419,35 +434,35 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_4th_last_argument_should_numeric_or_by_ratio(self):
+    def test_FAIL_4th_argument_random(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.show, self.random]
 
-        error_message = (f'{ERRORS_MESSAGES["4th last arg"]}\n'
-                         f" {self.random}\n"
+        error_message = (f"{ERRORS_MESSAGES['invalid arg']}\n" +
+                         f"{self.random}\n" +
                          f"{help_tip()}")
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_5th_last_argument_should_numeric_or_by_ratio(self):
+    def test_FAIL_5th_argument_random(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.save, self.output_dir, self.random]
 
-        error_message = (f'{ERRORS_MESSAGES["5th last arg"]}:\n'
-                         f" {self.random}\n"
+        error_message = (f"{ERRORS_MESSAGES['invalid arg']}\n" +
+                         f"{self.random}\n" +
                          f"{help_tip()}")
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_6th_last_argument_should_numeric_or_by_ratio(self):
+    def test_FAIL_6th_argument_random(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.save, self.output_dir, self.width, self.random]
 
-        error_message = (f'{ERRORS_MESSAGES["6th last arg"]}:\n'
-                         f" {self.random}\n"
+        error_message = (f"{ERRORS_MESSAGES['invalid arg']}\n"
+                         f"{self.random}\n"
                          f"{help_tip()}")
 
         test_FAIL_argv(self, _argv, error_message)
@@ -552,35 +567,35 @@ class TestReferenceJudge(unittest.TestCase):
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_5th_numeric(self):
+    def test_FAIL_5th_random_6th_ratio(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.save, self.output_dir, self.random, self.by_ratio]
 
-        error_message = (f"{ERRORS_MESSAGES['5th numeric']}\n"
-                         f" {self.random}\n"
+        error_message = (f"{ERRORS_MESSAGES['invalid arg']}\n"
+                         f"{self.random}\n"
                          f"{help_tip()}")
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_4th_numeric(self):
+    def test_FAIL_4th_random_5th_numeric(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.show, self.random, self.by_ratio]
 
-        error_message = (f"{ERRORS_MESSAGES['4th numeric']}\n"
-                         f" {self.random}\n"
+        error_message = (f"{ERRORS_MESSAGES['invalid arg']}\n"
+                         f"{self.random}\n"
                          f"{help_tip()}")
 
         test_FAIL_argv(self, _argv, error_message)
 
-    def test_FAIL_5th_last_arg_br(self):
+    def test_FAIL_5th_width_6th_random(self):
 
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.show, self.width, self.random]
 
-        error_message = (f"{ERRORS_MESSAGES['5th last arg -br']}\n"
-                         f" {self.random}\n"
+        error_message = (f"{ERRORS_MESSAGES['invalid arg']}\n"
+                         f"{self.random}\n"
                          f"{help_tip()}")
 
         test_FAIL_argv(self, _argv, error_message)
@@ -590,8 +605,8 @@ class TestReferenceJudge(unittest.TestCase):
         _argv = [program_name, self.source_dir,
                  self.target_dir, self.show, self.width, self.by_ratio, self.random]
 
-        error_message = (f"{ERRORS_MESSAGES['one arg too much']}\n"
-                         f" {self.random}\n"
+        error_message = (f"{ERRORS_MESSAGES['invalid arg']}\n"
+                         f"{self.random}\n"
                          f"{help_tip()}")
 
         test_FAIL_argv(self, _argv, error_message)
