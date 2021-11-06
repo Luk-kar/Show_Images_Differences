@@ -173,7 +173,7 @@ class HowUse():
 To avoid too big distortions, accepted ratios between compared images are from {IMAGES_SIZES["lowest scale"]} to {IMAGES_SIZES["highest scale"]}.
 4. Choose output methods ("Save" or "Show"), with the provided path or not.
 5. Set any width's display images between 1 and {IMAGES_SIZES["biggest dimension"]} (px value).
-6. If you want to show areas of differences on images you can check "Mark differences on images".
+6. If you want to see marked areas of differences on images you can check "Mark differences on images".
 7. Finally, push the "Match images" button to render results.
         """
         how_to_use_label = tk.Label(

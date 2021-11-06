@@ -186,7 +186,7 @@ class MainGUIApp():
 
         self.show_differences_checkbox = tk.Checkbutton(
             frame_optional,
-            text="Show differences red rectangles",
+            text="Mark differences on images",
             variable=self.show_differences,
             onvalue=ARGV["show differences"][0],
             offvalue="default"
