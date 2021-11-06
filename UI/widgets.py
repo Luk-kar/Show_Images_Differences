@@ -96,7 +96,7 @@ class About():
         label_font = 'Helvetica 9 bold'
 
         # Version
-        numb = "1.0.0"
+        numb = "2.0.0"
         version_label = tk.Label(padding, text="Version:", font=label_font)
         version_label.pack(anchor=justify, padx=width)
         version_numb = tk.Label(padding, text=f"{numb}")
