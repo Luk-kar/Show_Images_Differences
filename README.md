@@ -15,8 +15,6 @@ To run only the UI version you don't have to provide any arguments, just press "
 
 If you want to use the console: [**How to use console**](docs/How_to_use_console.md)
 
-standalone exe version of a program is here: [link](https://gofile.io/d/DlYQ0I)
-
 You can also create your executable: [link](https://www.youtube.com/watch?v=UZX5kH72Yx4)
 
 ## Using UI version 👀
@@ -47,7 +45,7 @@ You can also create your executable: [link](https://www.youtube.com/watch?v=UZX5
    any ratios of **target** images below or above these values are disregarded  
    Generally, it's not recommended to use this option due to image distortions
 
-8. The checkbox **Show differences red rectangles** enables showing **marked area** by red rectangle where **differences occur**
+8. The checkbox **Mark differences on images** enables showing **marked area** by red rectangle where **differences occur**
 
 9. The final step is to push the button **"Match images"**  
    Depending on the number of images to process results should appear fairly fast  
