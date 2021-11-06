@@ -184,15 +184,15 @@ class MainGUIApp():
         # Show differences red rectangles
         self.show_differences = tk.StringVar()
 
-        self.show_differences_red_rectangles_checkbox = tk.Checkbutton(
+        self.show_differences_checkbox = tk.Checkbutton(
             frame_optional,
             text="Show differences red rectangles",
             variable=self.show_differences,
             onvalue=ARGV["show differences"][0],
             offvalue="default"
         )
-        self.show_differences_red_rectangles_checkbox.select()
-        self.show_differences_red_rectangles_checkbox.grid(
+        self.show_differences_checkbox.deselect()
+        self.show_differences_checkbox.grid(
             row=3, column=0, stick="w")
 
         # Match images
@@ -293,6 +293,9 @@ class MainGUIApp():
         by_ratio_state = config.get("OPTIONAL", "by the same ratio")
         self.by_ratio.set(by_ratio_state)
 
+        show_differences = config.get("OPTIONAL", "show differences")
+        self.show_differences.set(show_differences)
+
     def entry_set(self, entry, entry_content):
 
         entry = self.entry_set_text(entry, entry_content)
@@ -340,6 +343,7 @@ class MainGUIApp():
             "Enter your path...",
             IMAGES_SIZES["default width"],
             "default",
+            "default"
         )
 
         config = read_config_file(defaults_file)
@@ -383,6 +387,7 @@ class MainGUIApp():
             self.output_entry.get(),
             self.width_entry.get(),
             self.by_ratio.get(),
+            self.show_differences.get()
         )
 
         messagebox.showinfo(
@@ -408,6 +413,7 @@ class MainGUIApp():
                 self.output_entry.get(),
                 self.width_entry.get(),
                 self.by_ratio.get(),
+                self.show_differences.get()
             )
 
             messagebox.showinfo(
@@ -428,6 +434,8 @@ class MainGUIApp():
             "by ratio": 'Match images refs: "Source -> Target", ' +
             "with diffrent sizes but the same ratio.\n" +
             "Not recommended due to distortions.",
+            "show differences": "Show on the target image and source image differences by " +
+            "red rectangle surrounding differs area",
             "btn folder": "Choose folder...",
             "btn file": "Choose file...",
             "match btn": "Run the script!"
@@ -447,6 +455,8 @@ class MainGUIApp():
         CreateToolTip(self.show_radio, tooltips["show"])
 
         CreateToolTip(self.by_ratio_checkbox, tooltips["by ratio"])
+        CreateToolTip(self.show_differences_checkbox,
+                      tooltips["show differences"])
 
         CreateToolTip(self.source_btn_file, tooltips["btn file"])
         CreateToolTip(self.source_btn_folder, tooltips["btn folder"])
@@ -674,6 +684,7 @@ def setup_saving(
     output_entry,
     width_entry,
     by_ratio,
+    show_differences
 ):
 
     config = ConfigParser()
@@ -690,7 +701,8 @@ def setup_saving(
 
     config["OPTIONAL"] = {
         "width entry": width_entry,
-        "by the same ratio": by_ratio
+        "by the same ratio": by_ratio,
+        "show differences": show_differences
     }
 
     if output_path:
