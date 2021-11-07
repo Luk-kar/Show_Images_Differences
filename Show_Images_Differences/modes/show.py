@@ -9,21 +9,13 @@ from Show_Images_Differences.compute_image_differences import compute_image_diff
 
 # same module
 from Show_Images_Differences.modes.utils import (
-    check_correctness_optional_argvs,
-    check_width_argv_exists,
     check_type_width,
-    retrieve_argv_width, resize_all
+    resize_all
 )
 
 
 def show(width, similar_list, by_ratio, show_differences, _argv):
     """show matched images"""
-
-    # Optional args
-    if len(_argv) >= 15:  # todo
-        check_correctness_optional_argvs(_argv, 6)
-        if check_width_argv_exists(_argv, 6):
-            width = retrieve_argv_width(_argv, 6)
 
     check_type_width(width)  # fail fast
 

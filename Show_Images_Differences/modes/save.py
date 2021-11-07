@@ -16,10 +16,8 @@ from Show_Images_Differences.config.logger import Logger, write_in_log
 
 # same module
 from Show_Images_Differences.modes.utils import (
-    check_correctness_optional_argvs,
     check_type_width,
-    check_width_argv_exists,
-    retrieve_argv_width, resize_all
+    resize_all
 )
 
 
@@ -30,12 +28,6 @@ def save(width, similar_list, by_ratio, show_differences, _argv, script_run_date
         output_path = _argv[4]
     else:
         output_path = None
-
-    # Optional args
-    if len(_argv) >= 16:  # todo
-        check_correctness_optional_argvs(_argv, 7)
-        if check_width_argv_exists(_argv, 7):
-            width = retrieve_argv_width(_argv, 7)
 
     check_type_width(width)  # fail fast
 
