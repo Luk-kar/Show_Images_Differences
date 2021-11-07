@@ -142,12 +142,10 @@ def get_width(_argv, minimal_number_of_arguments):
 
     width = IMAGES_SIZES["default width"]
 
-    if _argv[minimal_number_of_arguments].isnumeric():
-        width = int(_argv[minimal_number_of_arguments])
-    elif len(_argv) > minimal_number_of_arguments + 1 and _argv[minimal_number_of_arguments + 1].isnumeric():
-        width = int(_argv[minimal_number_of_arguments + 1])
-    elif len(_argv) > minimal_number_of_arguments + 2 and _argv[minimal_number_of_arguments + 2].isnumeric():
-        width = int(_argv[minimal_number_of_arguments + 2])
+    for x in range(minimal_number_of_arguments, minimal_number_of_arguments + 3):
+        if len(_argv) > x and _argv[x].isnumeric():
+            width = int(_argv[x])
+            break
 
     return width
 
@@ -166,12 +164,10 @@ def get_option_modificator(_argv, minimal_number_of_arguments, modificator):
 
     option = None
 
-    if _argv[minimal_number_of_arguments] in ARGV[modificator]:
-        option = _argv[minimal_number_of_arguments]
-    elif len(_argv) > minimal_number_of_arguments + 1 and _argv[minimal_number_of_arguments + 1] in ARGV[modificator]:
-        option = _argv[minimal_number_of_arguments + 1]
-    elif len(_argv) > minimal_number_of_arguments + 2 and _argv[minimal_number_of_arguments + 2] in ARGV[modificator]:
-        option = _argv[minimal_number_of_arguments + 2]
+    for x in range(minimal_number_of_arguments, minimal_number_of_arguments + 3):
+        if len(_argv) > x and _argv[x] in ARGV[modificator]:
+            option = _argv[x]
+            break
 
     return option
 
