@@ -46,11 +46,6 @@ def get_error_invalid_argument():
              f"{help_tip()}")
 
 
-def check_correctness_number_of_args_all_cases(argv_):
-    """return bool"""
-    return not (check_command_help_len(argv_) or check_correctness_number_of_args_mode(argv_))
-
-
 def check_correctness_help_command(argv_):
     """return bool"""
     return check_command_help_len(argv_) and not argv_[1] in ARGV["help"]
