@@ -77,19 +77,8 @@ def Show_Images_Differences(_argv):
 
         minimal_number_of_arguments = 5
 
-        if len(_argv) > minimal_number_of_arguments:
-
-            by_ratio = get_by_ratio(_argv, minimal_number_of_arguments)
-
-            show_differences = get_mark_differences(
-                _argv, minimal_number_of_arguments)
-
-            if _argv[minimal_number_of_arguments].isnumeric():
-                width = int(_argv[minimal_number_of_arguments])
-            elif len(_argv) > minimal_number_of_arguments + 1 and _argv[minimal_number_of_arguments + 1].isnumeric():
-                width = int(_argv[minimal_number_of_arguments + 1])
-            elif len(_argv) > minimal_number_of_arguments + 2 and _argv[minimal_number_of_arguments + 2].isnumeric():
-                width = int(_argv[minimal_number_of_arguments + 2])
+        by_ratio, show_differences, width = get_optional_args(
+            _argv, minimal_number_of_arguments)
 
     messages_summary = []
 
