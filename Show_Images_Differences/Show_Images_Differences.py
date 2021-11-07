@@ -69,26 +69,11 @@ def Show_Images_Differences(_argv):
 
         if len(_argv) > 4:
 
-            if _argv[4] in ARGV["search by ratio"]:
-                by_ratio = _argv[4]
-            elif len(_argv) > 5 and _argv[5] in ARGV["search by ratio"]:
-                by_ratio = _argv[5]
-            elif len(_argv) > 6 and _argv[6] in ARGV["search by ratio"]:
-                by_ratio = _argv[5]
+            by_ratio = check_by_ratio(_argv)
 
-            if _argv[4] in ARGV["show differences"]:
-                show_differences = _argv[4]
-            elif len(_argv) > 5 and _argv[5] in ARGV["show differences"]:
-                show_differences = _argv[5]
-            elif len(_argv) > 6 and _argv[6] in ARGV["show differences"]:
-                show_differences = _argv[6]
+            show_differences = check_mark_differences(_argv)
 
-            if _argv[4].isnumeric():
-                width = int(_argv[4])
-            elif len(_argv) > 5 and _argv[5].isnumeric():
-                width = int(_argv[5])
-            elif len(_argv) > 6 and _argv[6].isnumeric():
-                width = int(_argv[6])
+            width = check_width(_argv)
 
     elif mode in ARGV["save"]:
         output_path = _argv[4]
@@ -157,6 +142,48 @@ def Show_Images_Differences(_argv):
 
     # Value used in UI message box
     return stringify_lists(messages_summary)
+
+
+def check_width(_argv):
+
+    width = IMAGES_SIZES["default width"]
+
+    if _argv[4].isnumeric():
+        width = int(_argv[4])
+    elif len(_argv) > 5 and _argv[5].isnumeric():
+        width = int(_argv[5])
+    elif len(_argv) > 6 and _argv[6].isnumeric():
+        width = int(_argv[6])
+
+    return width
+
+
+def check_mark_differences(_argv):
+
+    show_differences = None
+
+    if _argv[4] in ARGV["show differences"]:
+        show_differences = _argv[4]
+    elif len(_argv) > 5 and _argv[5] in ARGV["show differences"]:
+        show_differences = _argv[5]
+    elif len(_argv) > 6 and _argv[6] in ARGV["show differences"]:
+        show_differences = _argv[6]
+
+    return show_differences
+
+
+def check_by_ratio(_argv):
+
+    by_ratio = None
+
+    if _argv[4] in ARGV["search by ratio"]:
+        by_ratio = _argv[4]
+    elif len(_argv) > 5 and _argv[5] in ARGV["search by ratio"]:
+        by_ratio = _argv[5]
+    elif len(_argv) > 6 and _argv[6] in ARGV["search by ratio"]:
+        by_ratio = _argv[5]
+
+    return by_ratio
 
 
 def count_found_and_not_found_refs(source_ref_path, similar_list):
