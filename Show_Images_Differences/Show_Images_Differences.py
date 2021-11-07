@@ -69,14 +69,8 @@ def Show_Images_Differences(_argv):
 
         minimal_number_of_arguments = 4
 
-        if len(_argv) > minimal_number_of_arguments:
-
-            by_ratio = get_by_ratio(_argv, minimal_number_of_arguments)
-
-            show_differences = get_mark_differences(
-                _argv, minimal_number_of_arguments)
-
-            width = get_width(_argv, minimal_number_of_arguments)
+        by_ratio, show_differences, width = get_optional_args(
+            _argv, minimal_number_of_arguments)
 
     elif mode in ARGV["save"]:
         output_path = _argv[4]
@@ -145,6 +139,21 @@ def Show_Images_Differences(_argv):
 
     # Value used in UI message box
     return stringify_lists(messages_summary)
+
+
+def get_optional_args(_argv, minimal_number_of_arguments):
+
+    by_ratio, show_differences, width = None, None, IMAGES_SIZES["default width"]
+
+    if len(_argv) > minimal_number_of_arguments:
+        by_ratio = get_by_ratio(_argv, minimal_number_of_arguments)
+
+        show_differences = get_mark_differences(
+            _argv, minimal_number_of_arguments)
+
+        width = get_width(_argv, minimal_number_of_arguments)
+
+    return by_ratio, show_differences, width
 
 
 def get_width(_argv, minimal_number_of_arguments):
