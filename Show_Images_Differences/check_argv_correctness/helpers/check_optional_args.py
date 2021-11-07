@@ -29,12 +29,11 @@ def check_optional_args(argv_):
 
     elif len(argv_) >= 6 and mode in ARGV["save"]:
 
-        if not check_is_optional_argument(argv_[5]):
-            invalid_optional_arg.insert(0, argv_[5])
-        elif len(argv_) >= 7 and not check_is_optional_argument(argv_[6]):
-            invalid_optional_arg.insert(0, argv_[6])
-        elif len(argv_) >= 8 and not check_is_optional_argument(argv_[7]):
-            invalid_optional_arg.insert(0, argv_[7])
+        minimal_argument_number = 5
+
+        for x in range(minimal_argument_number, minimal_argument_number + 3):
+            if len(argv_) >= x + 1 and not check_is_optional_argument(argv_[x]):
+                invalid_optional_arg.insert(0, argv_[x])
 
     if invalid_optional_arg:
         for arg in invalid_optional_arg:
