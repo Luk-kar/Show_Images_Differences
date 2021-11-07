@@ -67,13 +67,16 @@ def Show_Images_Differences(_argv):
     if mode in ARGV["show"]:
         output_path = None
 
-        if len(_argv) > 4:
+        minimal_number_of_arguments = 4
 
-            by_ratio = get_by_ratio(_argv)
+        if len(_argv) > minimal_number_of_arguments:
 
-            show_differences = get_mark_differences(_argv)
+            by_ratio = get_by_ratio(_argv, minimal_number_of_arguments)
 
-            width = get_width(_argv)
+            show_differences = get_mark_differences(
+                _argv, minimal_number_of_arguments)
+
+            width = get_width(_argv, minimal_number_of_arguments)
 
     elif mode in ARGV["save"]:
         output_path = _argv[4]
@@ -144,28 +147,28 @@ def Show_Images_Differences(_argv):
     return stringify_lists(messages_summary)
 
 
-def get_width(_argv):
+def get_width(_argv, minimal_number_of_arguments):
 
     width = IMAGES_SIZES["default width"]
 
-    if _argv[4].isnumeric():
-        width = int(_argv[4])
-    elif len(_argv) > 5 and _argv[5].isnumeric():
-        width = int(_argv[5])
-    elif len(_argv) > 6 and _argv[6].isnumeric():
-        width = int(_argv[6])
+    if _argv[minimal_number_of_arguments].isnumeric():
+        width = int(_argv[minimal_number_of_arguments])
+    elif len(_argv) > minimal_number_of_arguments + 1 and _argv[minimal_number_of_arguments + 1].isnumeric():
+        width = int(_argv[minimal_number_of_arguments + 1])
+    elif len(_argv) > minimal_number_of_arguments + 2 and _argv[minimal_number_of_arguments + 2].isnumeric():
+        width = int(_argv[minimal_number_of_arguments + 2])
 
     return width
 
 
-def get_mark_differences(_argv):
+def get_mark_differences(_argv, minimal_number_of_arguments):
 
-    return get_option_modificator(_argv, 4, "show differences")
+    return get_option_modificator(_argv, minimal_number_of_arguments, "show differences")
 
 
-def get_by_ratio(_argv):
+def get_by_ratio(_argv, minimal_number_of_arguments):
 
-    return get_option_modificator(_argv, 4, "search by ratio")
+    return get_option_modificator(_argv, minimal_number_of_arguments, "search by ratio")
 
 
 def get_option_modificator(_argv, minimal_number_of_arguments, modificator):
