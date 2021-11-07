@@ -75,27 +75,20 @@ def Show_Images_Differences(_argv):
     elif mode in ARGV["save"]:
         output_path = _argv[4]
 
+        minimal_number_of_arguments = 5
+
         if len(_argv) > 5:
 
-            if _argv[5] in ARGV["search by ratio"]:
-                by_ratio = _argv[5]
-            elif len(_argv) > 6 and _argv[6] in ARGV["search by ratio"]:
-                by_ratio = _argv[6]
-            elif len(_argv) > 7 and _argv[7] in ARGV["search by ratio"]:
-                by_ratio = _argv[6]
+            by_ratio = get_by_ratio(_argv, minimal_number_of_arguments)
 
-            if _argv[5] in ARGV["show differences"]:
-                show_differences = _argv[5]
-            elif len(_argv) > 6 and _argv[6] in ARGV["show differences"]:
-                show_differences = _argv[6]
-            elif len(_argv) > 7 and _argv[7] in ARGV["show differences"]:
-                show_differences = _argv[7]
+            show_differences = get_mark_differences(
+                _argv, minimal_number_of_arguments)
 
             if _argv[5].isnumeric():
                 width = int(_argv[5])
-            elif len(_argv) > 6 and _argv[6].isnumeric() and len(_argv) > 6:
+            elif len(_argv) > 6 and _argv[6].isnumeric():
                 width = int(_argv[6])
-            elif len(_argv) > 7 and _argv[7].isnumeric() and len(_argv) > 7:
+            elif len(_argv) > 7 and _argv[7].isnumeric():
                 width = int(_argv[7])
 
     messages_summary = []
