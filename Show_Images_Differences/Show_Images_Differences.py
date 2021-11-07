@@ -69,11 +69,11 @@ def Show_Images_Differences(_argv):
 
         if len(_argv) > 4:
 
-            by_ratio = check_by_ratio(_argv)
+            by_ratio = get_by_ratio(_argv)
 
-            show_differences = check_mark_differences(_argv)
+            show_differences = get_mark_differences(_argv)
 
-            width = check_width(_argv)
+            width = get_width(_argv)
 
     elif mode in ARGV["save"]:
         output_path = _argv[4]
@@ -144,7 +144,7 @@ def Show_Images_Differences(_argv):
     return stringify_lists(messages_summary)
 
 
-def check_width(_argv):
+def get_width(_argv):
 
     width = IMAGES_SIZES["default width"]
 
@@ -158,32 +158,28 @@ def check_width(_argv):
     return width
 
 
-def check_mark_differences(_argv):
+def get_mark_differences(_argv):
 
-    show_differences = None
-
-    if _argv[4] in ARGV["show differences"]:
-        show_differences = _argv[4]
-    elif len(_argv) > 5 and _argv[5] in ARGV["show differences"]:
-        show_differences = _argv[5]
-    elif len(_argv) > 6 and _argv[6] in ARGV["show differences"]:
-        show_differences = _argv[6]
-
-    return show_differences
+    return get_option_modificator(_argv, 4, "show differences")
 
 
-def check_by_ratio(_argv):
+def get_by_ratio(_argv):
 
-    by_ratio = None
+    return get_option_modificator(_argv, 4, "search by ratio")
 
-    if _argv[4] in ARGV["search by ratio"]:
-        by_ratio = _argv[4]
-    elif len(_argv) > 5 and _argv[5] in ARGV["search by ratio"]:
-        by_ratio = _argv[5]
-    elif len(_argv) > 6 and _argv[6] in ARGV["search by ratio"]:
-        by_ratio = _argv[5]
 
-    return by_ratio
+def get_option_modificator(_argv, minimal_number_of_arguments, modificator):
+
+    option = None
+
+    if _argv[minimal_number_of_arguments] in ARGV[modificator]:
+        option = _argv[minimal_number_of_arguments]
+    elif len(_argv) > minimal_number_of_arguments + 1 and _argv[minimal_number_of_arguments + 1] in ARGV[modificator]:
+        option = _argv[minimal_number_of_arguments + 1]
+    elif len(_argv) > minimal_number_of_arguments + 2 and _argv[minimal_number_of_arguments + 2] in ARGV[modificator]:
+        option = _argv[minimal_number_of_arguments + 2]
+
+    return option
 
 
 def count_found_and_not_found_refs(source_ref_path, similar_list):
