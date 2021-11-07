@@ -7,7 +7,6 @@ import os
 from tkinter import filedialog  # for Python 3
 from tkinter import messagebox
 import tkinter as tk
-import sys
 
 # external libs
 from cv2 import destroyAllWindows
@@ -26,6 +25,8 @@ from UI.open_folder import open_folder
 
 # https://stackoverflow.com/a/17466924/12490791
 class MainGUIApp():
+    """Main window UI"""
+
     def __init__(self):
 
         master = tk.Tk()

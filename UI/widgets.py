@@ -6,7 +6,6 @@ except ImportError:
     # for Python3
     import tkinter as tk
 import webbrowser
-import sys
 import tkinter.scrolledtext as tkSrcl
 
 # Internal libs
